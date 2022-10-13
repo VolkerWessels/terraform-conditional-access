@@ -22,9 +22,12 @@ resource "azuread_conditional_access_policy" "conditional_access_policy" {
       dynamic "devices" {
         for_each = try(conditions.value.devices, null) == null ? [] : [conditions.value.devices]
         content {
-          filter {
-            mode = conditions.value.devices.filter.mode
-            rule = conditions.value.devices.filter.rule
+          dynamic "filter" {
+            for_each = try(devices.value.filter, null) == null ? [] : [devices.value.filter]
+            content {
+              mode = try(filter.value.mode, null)
+              rule = try(filter.value.rule, null)
+            }
           }
         }
       }
