@@ -8,7 +8,7 @@ module "conditional_access_policies" {
   name             = each.key
   state            = each.value.state
   conditions       = each.value.conditions
-  grant_controls   = each.value.grant_controls
+  grant_controls   = lookup(each.value,"grant_controls", null)
   session_controls = lookup(each.value, "session_controls", null)
 
 }
