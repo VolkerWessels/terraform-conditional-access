@@ -39,8 +39,10 @@ variable "conditions" {
     }
     devices = {}
     locations = {
-      excluded_locations = []
-      included_locations = []
+      excluded_locations      = []
+      excluded_location_keys  = []
+      included_locations      = []
+      included_locations_keys = []
     }
     users = {
       excluded_groups = []
@@ -62,8 +64,10 @@ variable "conditions" {
     applications = any
     devices = any
     locations = object({
-      excluded_locations = list(string)
-      included_locations = list(string)
+      excluded_locations      = list(string)
+      excluded_location_keys  = list(string)
+      included_locations      = list(string)
+      included_locations_keys = list(string)
     })
     users = object({
       excluded_groups = list(string)
@@ -79,4 +83,8 @@ variable "conditions" {
     })
 
   })
+}
+
+variable "named_locations" {
+  default = []
 }
