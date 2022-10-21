@@ -60,6 +60,9 @@ locals {
 }
 
 locals {
-  excluded_locations = concat([for n in var.conditions.locations.excluded_location_keys: var.named_locations[n].id], var.conditions.locations.excluded_locations)
-  included_locations = concat([for n in var.conditions.locations.included_locations_keys: var.named_locations[n].id], var.conditions.locations.included_locations)
+
+  excluded_location_keys  = try(var.conditions.locations.excluded_location_keys, null) == null ? [] : [ for n in var.conditions.locations.excluded_location_keys : var.named_locations[n].id]
+  included_location_keys  = try(var.conditions.locations.included_location_keys, null) == null ? [] :[ for n in var.conditions.locations.included_location_keys : var.named_locations[n].id]
+  excluded_locations      = concat( local.excluded_location_keys, var.conditions.locations.excluded_locations)
+  included_locations      = concat( local.excluded_location_keys, var.conditions.locations.included_locations)
 }

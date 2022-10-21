@@ -40,9 +40,9 @@ variable "conditions" {
     devices = {}
     locations = {
       excluded_locations      = []
-      excluded_location_keys  = []
+      excluded_location_keys  = null
       included_locations      = []
-      included_locations_keys = []
+      included_location_keys  = null
     }
     users = {
       excluded_groups = []
@@ -65,9 +65,9 @@ variable "conditions" {
     devices = any
     locations = object({
       excluded_locations      = list(string)
-      excluded_location_keys  = list(string)
+      excluded_location_keys  = optional(list(string))
       included_locations      = list(string)
-      included_locations_keys = list(string)
+      included_location_keys  = optional(list(string))
     })
     users = object({
       excluded_groups = list(string)

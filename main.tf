@@ -8,6 +8,9 @@ module "named_locations" {
   ip               = lookup(each.value,"ip", null)
 }
 
+output "named_locations" {
+  value = module.named_locations
+}
 
 module "conditional_access_policies" {
   for_each = local.conditional_access_policies
@@ -18,9 +21,9 @@ module "conditional_access_policies" {
   conditions       = each.value.conditions
   grant_controls   = lookup(each.value,"grant_controls", null)
   session_controls = lookup(each.value, "session_controls", null)
-  named_locations  = try(var.named_locations, [])
+  named_locations  = try(module.named_locations, [])
 }
 
-output "named_locations" {
-  value = module.named_locations
+output "conditional_access_policies" {
+  value = module.conditional_access_policies
 }

@@ -1,5 +1,5 @@
 named_locations = {
-  country_test = {
+  example_country = {
     name = "Country Named Location"
     country = {
       countries_and_regions = [
@@ -7,8 +7,8 @@ named_locations = {
       ]
     }
   },
-  ip_test = {
-    name = "Country Named Location"
+  example_ip = {
+    name = "IP Named Location"
     ip = {
       ip_ranges = [
         "1.1.1.1/32",
