@@ -16,7 +16,7 @@ module "conditional_access_policies" {
   for_each = local.conditional_access_policies
   source   = "./modules/policies"
 
-  name             = each.key
+  name             = try(each.value.name, each.key)
   state            = each.value.state
   conditions       = each.value.conditions
   grant_controls   = lookup(each.value,"grant_controls", null)
