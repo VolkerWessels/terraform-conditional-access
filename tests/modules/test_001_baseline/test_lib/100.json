@@ -19,7 +19,7 @@
       },
       "users": {
         "included_users"   : ["All"],
-        "excluded_users"   : ["breakglass@vwssc.onmicrosoft.com","1234abcd-1111-2222-3333-123456789abc"],
+        "excluded_users"   : ["break_glass@example.onmicrosoft.com","1234abcd-1111-2222-3333-123456789abc"],
         "included_groups"  : [],
         "excluded_groups"  : ["Some Group Display Name", "1234abcd-1111-2222-3333-123456789abc"],
         "included_roles"   : [],

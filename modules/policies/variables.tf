@@ -25,8 +25,6 @@ variable "session_controls" {
 
 variable "grant_controls" {}
 
-#variable "conditions" {}
-
 variable "conditions" {
   default = {
     client_app_types = ["all"]
@@ -37,7 +35,6 @@ variable "conditions" {
       included_applications = []
       included_user_actions = null
     }
-    devices = {}
     locations = {
       excluded_locations      = []
       excluded_location_keys  = null
@@ -62,7 +59,12 @@ variable "conditions" {
     sign_in_risk_levels = list(string)
     user_risk_levels = list(string)
     applications = any
-    devices = any
+    devices = optional(object({
+      filter = object({
+        mode = string
+        rule = string
+      })
+    }))
     locations = object({
       excluded_locations      = list(string)
       excluded_location_keys  = optional(list(string))
