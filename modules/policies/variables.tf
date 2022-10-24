@@ -25,8 +25,6 @@ variable "session_controls" {
 
 variable "grant_controls" {}
 
-#variable "conditions" {}
-
 variable "conditions" {
   default = {
     client_app_types = ["all"]
@@ -37,11 +35,13 @@ variable "conditions" {
       included_applications = []
       included_user_actions = null
     }
-    devices = {}
     locations = {
-      excluded_locations = []
-      included_locations = []
+      excluded_locations      = []
+      excluded_location_keys  = null
+      included_locations      = []
+      included_location_keys  = null
     }
+    devices = null
     users = {
       excluded_groups = []
       excluded_roles  = []
@@ -60,10 +60,17 @@ variable "conditions" {
     sign_in_risk_levels = list(string)
     user_risk_levels = list(string)
     applications = any
-    devices = any
+    devices = optional(object({
+      filter = optional(object({
+        mode = string
+        rule = string
+      }))
+    }))
     locations = object({
-      excluded_locations = list(string)
-      included_locations = list(string)
+      excluded_locations      = list(string)
+      excluded_location_keys  = optional(list(string))
+      included_locations      = list(string)
+      included_location_keys  = optional(list(string))
     })
     users = object({
       excluded_groups = list(string)
@@ -79,4 +86,8 @@ variable "conditions" {
     })
 
   })
+}
+
+variable "named_locations" {
+  default = []
 }

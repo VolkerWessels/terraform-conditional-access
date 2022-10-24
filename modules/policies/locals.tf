@@ -59,3 +59,10 @@ locals {
   excluded_groups = concat(data.azuread_groups.excluded_groups.object_ids, local.excluded_group_ids)
 }
 
+locals {
+
+  excluded_location_keys  = try(var.conditions.locations.excluded_location_keys, null) == null ? [] : [ for n in var.conditions.locations.excluded_location_keys : var.named_locations[n].id]
+  included_location_keys  = try(var.conditions.locations.included_location_keys, null) == null ? [] :[ for n in var.conditions.locations.included_location_keys : var.named_locations[n].id]
+  excluded_locations      = concat( local.excluded_location_keys, var.conditions.locations.excluded_locations)
+  included_locations      = concat( local.excluded_location_keys, var.conditions.locations.included_locations)
+}

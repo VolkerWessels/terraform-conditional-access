@@ -24,7 +24,7 @@
       included_users:
         - All
       excluded_users:
-        - break_glass#EXT#@example.onmicrosoft.com
+        - break_glass@example.onmicrosoft.com
         - GuestsOrExternalUsers
       included_groups: []
       excluded_groups:
@@ -32,7 +32,6 @@
         - 1234abcd-1111-2222-3333-123456789abc
       included_roles: []
       excluded_roles: []
-    devices: {}
   grant_controls:
     built_in_controls:
       - mfa

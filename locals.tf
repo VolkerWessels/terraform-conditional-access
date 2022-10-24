@@ -2,8 +2,8 @@ locals {
   library_path = var.library_path
   template_file_variables = var.template_file_variables
 
-  conditional_access_policies_json = tolist(fileset(local.library_path, "**/*.{json,json.tftpl}"))
-  conditional_access_policies_yaml = tolist(fileset(local.library_path, "**/*.{yml,yml.tftpl,yaml,yaml.tftpl}"))
+  conditional_access_policies_json = try(tolist(fileset(local.library_path, "**/*.{json,json.tftpl}")), [])
+  conditional_access_policies_yaml = try(tolist(fileset(local.library_path, "**/*.{yml,yml.tftpl,yaml,yaml.tftpl}")),[])
 }
 # Create datasets containing conditional access policies from each source and file type
 locals {

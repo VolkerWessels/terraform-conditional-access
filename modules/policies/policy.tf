@@ -1,7 +1,14 @@
+
 resource "azuread_conditional_access_policy" "conditional_access_policy" {
 
   display_name = var.name
   state        = var.state
+
+  lifecycle {
+    ignore_changes = [
+      id
+    ]
+  }
 
   dynamic "conditions" {
     for_each = try(var.conditions, null) != null ? [var.conditions]: []
@@ -33,10 +40,10 @@ resource "azuread_conditional_access_policy" "conditional_access_policy" {
       }
 
       dynamic "locations" {
-        for_each = try(conditions.value.locations, null) == null ? [] : [conditions.value.locations]
+        for_each = try(local.included_locations, null) == null ? [] : [conditions.value.locations]
         content {
-          excluded_locations = try(locations.value.excluded_locations, [])
-          included_locations = locations.value.included_locations
+          excluded_locations = try(local.excluded_locations, [])
+          included_locations = local.included_locations
         }
       }
 

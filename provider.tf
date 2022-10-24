@@ -1,8 +1,5 @@
 # Configure the Azure provider
 terraform {
-#  backend "azurerm" {
-#  }
-  
   required_providers {
    azurerm = {
       source = "hashicorp/azurerm"
@@ -11,6 +8,8 @@ terraform {
       source = "hashicorp/azuread"
     }
   }
+  required_version = ">= 1.2"
+  experiments      = [module_variable_optional_attrs]
 }
 
 provider "azurerm" {
