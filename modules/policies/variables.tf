@@ -41,6 +41,7 @@ variable "conditions" {
       included_locations      = []
       included_location_keys  = null
     }
+    devices = null
     users = {
       excluded_groups = []
       excluded_roles  = []
@@ -60,10 +61,10 @@ variable "conditions" {
     user_risk_levels = list(string)
     applications = any
     devices = optional(object({
-      filter = object({
+      filter = optional(object({
         mode = string
         rule = string
-      })
+      }))
     }))
     locations = object({
       excluded_locations      = list(string)
