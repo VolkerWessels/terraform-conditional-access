@@ -20,9 +20,9 @@ resource "azuread_conditional_access_policy" "conditional_access_policy" {
       dynamic "applications" {
         for_each = try(conditions.value.applications, null) == null ? [] : [conditions.value.applications]
         content {
-          excluded_applications = try(applications.value.excluded_applications , null)
-          included_applications = try(applications.value.included_applications , null)
-          included_user_actions = try(applications.value.included_user_actions , null)
+          excluded_applications = try(applications.value.excluded_applications , [])
+          included_applications = try(applications.value.included_applications , [])
+          included_user_actions = try(applications.value.included_user_actions , [])
         }
       }
 
