@@ -46,9 +46,11 @@ variable "conditions" {
       excluded_groups = []
       excluded_roles  = []
       excluded_users  = []
+      excluded_guestsorexternalusers = []
       included_groups = []
       included_roles  = []
       included_users  = []
+      included_guestsorexternalusers = []
     }
     platforms = {
       excluded_platforms = []
