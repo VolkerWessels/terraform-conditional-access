@@ -42,8 +42,8 @@ resource "azuread_conditional_access_policy" "conditional_access_policy" {
       dynamic "locations" {
         for_each = try(local.included_locations, null) == null ? [] : [conditions.value.locations]
         content {
-          excluded_locations = try(local.excluded_locations, [])
-          included_locations = local.included_locations
+          excluded_locations = try(local.excluded_locations, null)
+          included_locations = try(local.included_locations, null)
         }
       }
 
