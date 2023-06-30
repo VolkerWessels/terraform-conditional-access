@@ -53,9 +53,11 @@ resource "azuread_conditional_access_policy" "conditional_access_policy" {
           excluded_groups = try(local.excluded_groups, [])
           excluded_roles = try(users.value.excluded_roles, [])
           excluded_users = try(local.excluded_users, [])
+          excluded_guestsorexternalusers = try(local.excluded_guestsorexternalusers, [])
           included_groups = try(local.included_groups, [])
           included_roles = try(users.value.included_roles, [])
           included_users = try(local.included_users, [])
+          included_guestsorexternalusers = try(local.included_guestsorexternalusers, []) 
         }
       }
 
