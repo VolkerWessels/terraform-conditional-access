@@ -22,7 +22,7 @@ resource "azuread_conditional_access_policy" "conditional_access_policy" {
         content {
           excluded_applications = try(applications.value.excluded_applications , [])
           included_applications = try(applications.value.included_applications , [])
-          included_user_actions = try(applications.value.included_user_actions , null)
+          included_user_actions = try(applications.value.included_user_actions , [])
         }
       }
 
